@@ -4,14 +4,19 @@ import { signInAnonymously } from "../../../utils/supabase/actions";
 import { PiDetectiveFill } from "react-icons/pi";
 import { Spinner } from "@chakra-ui/spinner"
 import React, { useState, useActionState } from "react";
+import { useAppSelector, useAppDispatch } from "../../../store";
 
 
 export default function AnonymousSignin({ text }: { text: string }) {
+
+  const dispatch = useAppDispatch();
 
     const [state, formAction, isPending] = useActionState(signInAnonymously, {
       error: null,
       success: '',
     })
+
+    console.log(state, 'state')
   return (
     <form action={formAction}>
       <button className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-black p-4 font-medium text-white transition hover:bg-opacity-90" 

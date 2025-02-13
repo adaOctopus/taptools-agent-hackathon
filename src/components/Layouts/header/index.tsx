@@ -5,12 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSidebarContext } from "../sidebar/sidebar-context";
 import { MenuIcon } from "./icons";
+import { useState } from "react";
 import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
+import { WalletModal, ConnectWallet, useConnectWallet } from "@newm.io/cardano-dapp-wallet-connector";
+
 
 export function Header() {
   const { toggleSidebar, isMobile } = useSidebarContext();
+  const { wallet } = useConnectWallet();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-30 flex items-center justify-between border-b border-stroke bg-white px-4 py-5 shadow-1 dark:border-stroke-dark dark:bg-gray-dark md:px-5 2xl:px-10">
@@ -34,15 +39,15 @@ export function Header() {
         </Link>
       )}
 
-      <div className="max-xl:hidden">
+      {/* <div className="max-xl:hidden">
         <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
           Dashboard
         </h1>
         <p className="font-medium">Next.js Admin Dashboard Solution</p>
-      </div>
+      </div> */}
 
       <div className="flex flex-1 items-center justify-end gap-2 min-[375px]:gap-4">
-        <div className="relative w-full max-w-[300px]">
+        {/* <div className="relative w-full max-w-[300px]">
           <input
             type="search"
             placeholder="Search"
@@ -50,11 +55,24 @@ export function Header() {
           />
 
           <SearchIcon className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 max-[1015px]:size-5" />
+        </div> */}
+
+      <div className="relative w-full max-w-[300px]" >
+        <button
+
+          type="submit"
+          onClick={() => setIsModalOpen(true)}
+          style={{borderRadius: '70px', height: "50px"}}
+          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
+        >
+          CONNECT WALLET
+          
+        </button>
         </div>
 
         <ThemeToggleSwitch />
 
-        <Notification />
+        {/* <Notification /> */}
 
         <div className="shrink-0">
           <UserInfo />
