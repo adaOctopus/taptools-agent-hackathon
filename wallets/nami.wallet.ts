@@ -1,7 +1,7 @@
-import { NamiIcon } from "@/component/icons/nami.icon";
+import { NamiIcon } from "../src/components/Wallet/nami.icon"
 import { getAddressDetails } from "lucid-cardano";
 import BaseWallet from "./base.wallet";
-import * as Actions from '../actions/cardano-wallet.action';
+import { updateWalletRedux } from "../store/features/walletSlice";
 
 let events: any = [];
 
@@ -32,7 +32,7 @@ class NamiWallet extends BaseWallet {
         );
         const result = getAddressDetails(addresses[0]);
         dispatch(
-          Actions.updateWallet({
+          updateWalletRedux({
             wallet: {
               address: result.address.bech32,
             },

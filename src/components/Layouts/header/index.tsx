@@ -7,10 +7,30 @@ import { useSidebarContext } from "../sidebar/sidebar-context";
 import { MenuIcon } from "./icons";
 import { useState } from "react";
 import { Notification } from "./notification";
+import { Button } from "antd"
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
 import { WalletModal, ConnectWallet, useConnectWallet } from "@newm.io/cardano-dapp-wallet-connector";
+import dynamic from "next/dynamic";
+import WalletConnect  from "../../Wallet/WalletComponent";
 
+// const WalletConnect = dynamic(() => import('../../Wallet/WalletComponent'), {
+//   ssr: false,// Disables SSR
+//   loading: () => <Button
+//       onClick={() => console.log('Crypto')}
+//       className="btn btn3"
+//       ghost
+//       type="primary"
+//       style={{
+//           color: 'white',
+//           background: "linear-gradient(to right, #DA22FF 0%, #9733EE  51%, #DA22FF  100%)",
+//           width: "200px"
+//       }}
+//   >
+//       CONNECT WALLET
+//   </Button>,
+
+// });
 
 export function Header() {
   const { toggleSidebar, isMobile } = useSidebarContext();
@@ -57,7 +77,7 @@ export function Header() {
           <SearchIcon className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 max-[1015px]:size-5" />
         </div> */}
 
-      <div className="relative w-full max-w-[300px]" >
+      {/* <div className="relative w-full max-w-[300px]" >
         <button
 
           type="submit"
@@ -68,7 +88,13 @@ export function Header() {
           CONNECT WALLET
           
         </button>
-        </div>
+        </div> */}
+         <div
+          className="p-4 justify-end flex"
+          //  style={{
+          // boxShadow: "0 0 10px 0 rgba(0,0,0,.1)",
+          //  }}
+           ><WalletConnect /></div>
 
         <ThemeToggleSwitch />
 

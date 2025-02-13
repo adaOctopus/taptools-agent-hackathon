@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { persistReducer } from "redux-persist";
 import { authReducer } from "./features/authSlice";
+import { walletReducer } from "./features/walletSlice";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 const isClient = typeof window !== "undefined";
@@ -31,10 +32,18 @@ const authPersistConfig = {
   whitelist: ["authState", "userEmail"],
 };
 
+const walletPersistConfig = {
+  key: "wallet",
+  storage: isClient? storage : createNoopStorage(),
+  whitelist: ["wallet", "loading", "error"],
+};
+
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
+const persistedWalletReducer = persistReducer(walletPersistConfig, walletReducer);
 
 const rootReducer = combineReducers({
     auth: persistedAuthReducer,
+    wallet: persistedWalletReducer,
 
 });
 
