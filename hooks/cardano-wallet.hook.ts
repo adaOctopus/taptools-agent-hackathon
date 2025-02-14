@@ -13,7 +13,7 @@ export function useCardanoWalletConnect(): [(wallet: Object) => void] {
     const dispatch = useDispatch();
 
     const connectWallet = useCallback(async (item: any) => {
-        try {
+        
             const wallet = new Wallets[item.id]();
             if (!wallet.provider) {
                 return window.open(wallet.extensionLink);
@@ -54,10 +54,10 @@ export function useCardanoWalletConnect(): [(wallet: Object) => void] {
                     },
                 })
             );
-        } catch (error) {
-            console.error(`connect wallet=${item.id} failed: `, error)
-            alert(error);
-        }
+        // } catch (error) {
+        //     console.error(`connect wallet=${item.id} failed: `, error)
+        //     alert(error);
+        // }
     }, []);
 
     return [connectWallet];

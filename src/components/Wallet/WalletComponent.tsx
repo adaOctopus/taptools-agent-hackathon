@@ -55,7 +55,13 @@ const WalletConnect = ({ style, className }: any) => {
         open: false,
       });
     } catch (error: any) {
-      messageApi.error(error?.info || error?.message || error);
+      messageApi.open({
+        type: 'warning',
+        content: 'You need to connect your wallet to continue 🙏',
+        duration: 2,
+      });
+      //error?.info || error?.message || error
+      //console.log(error, 'Here wallet crashed')
     } finally {
       setLoading("");
     }

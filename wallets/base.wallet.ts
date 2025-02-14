@@ -26,11 +26,11 @@ class BaseWallet {
       return this.api;
     }
 
-    if (await this.isEnabled()) {
-      return await this.enable();
-    }
+    // if (await this.isEnabled()) {
+    //   return await this.enable();
+    // }
 
-    return null;
+    // return null;
   }
   async getNetworkId() {
     const api = await this.getApi();
