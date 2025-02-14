@@ -2,6 +2,7 @@
 import { Typography, message, Row, Col, Modal, Button, theme } from "antd";
 import { twMerge } from "tailwind-merge";
 import { ComponentProps, useEffect, useMemo, useState } from "react";
+import { LogOutIcon, SettingsIcon, UserIcon } from "../Layouts/header/user-info/icons";
 import { truncate } from "../../../utils/address.util";
 import { useCallback } from "react";
 import Image from "next/image"
@@ -16,6 +17,7 @@ import nami from "../../assets/nami.png"
 import yoroi from "../../assets/yoroi.png"
 import eternl from "../../assets/eternl.png"
 import lace from "../../assets/lacelogo.png"
+import { useAppDispatch, useAppSelector } from "../../../store";
 
 const walletIcons: any = {
   yoroi: yoroi,
@@ -41,12 +43,14 @@ const WalletConnect = ({ style, className }: any) => {
 
 
   const [loading, setLoading] = useState("");
+  const walletState = useAppSelector((state) => state.wallet.wallet);
+  console.log(walletState.wallet, 'walletState')
 
   const handleConnect = useCallback(async (item: any) => {
     try {
       setLoading(item.id);
       await connectWallet(item);
-      console.log('ricoco')
+      //console.log('ricoco', wallet)
       updateSelectWalletModal({
         open: false,
       });
@@ -119,16 +123,25 @@ const WalletConnect = ({ style, className }: any) => {
           >
             CONNECT WALLET
           </Button> */}
-          <button
+         {!walletState.wallet ? ( <button
 
-          type="submit"
-          onClick={handleConnectBtnClick}
-          style={{height: "50px", fontSize: "15px"}}
-          className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
-        >
-          CONNECT WALLET
-          
-        </button>
+                    type="submit"
+                    onClick={handleConnectBtnClick}
+                    style={{height: "40px", fontSize: "15px"}}
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
+                    >
+                    CONNECT WALLET
+
+                    </button>) : ( <button
+
+                    type="submit"
+                    onClick={handleDisconnect}
+                    style={{height: "30px", backgroundColor: "", fontSize: "15px", border: "1px solid", color: "#C4C4C4", borderColor: "#C4C4C4"}}
+                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg p-4 font-medium transition hover:bg-opacity-90"
+                    >
+                    Disconnect
+
+                    </button>)}
           <Modal
             // title="Select a wallet"
             wrapClassName={cssClass['web3-modal-wrapper']}

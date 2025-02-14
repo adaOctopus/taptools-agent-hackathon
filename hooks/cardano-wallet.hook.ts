@@ -4,6 +4,7 @@ import { Lucid } from "lucid-cardano";
 import { useCallback } from "react";
 import { Wallets } from "../wallets/index.wallet";
 import Networks from '../constants/cardano-network.constant'
+import { useAppSelector } from "../store";
 import { connectWalletRedux, disconnectWalletRedux } from "../store/features/walletSlice";
 
 const CARDANO_NETWORK_ID: any = 0// process.env.NEXT_PUBLIC_CARDANO_NETWORK_ID
@@ -81,7 +82,7 @@ export function useCardanoWalletDisconnect() {
 }
 
 export function useCardanoWalletConnected() {
-    const wallet = useSelector(
+    const wallet = useAppSelector(
         (state: any) => state.wallet.wallet
     );
 

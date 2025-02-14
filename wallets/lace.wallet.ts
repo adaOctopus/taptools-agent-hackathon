@@ -14,41 +14,50 @@ class LaceWallet extends BaseWallet {
     });
   }
 
-  async subscribeEvents({ dispatch }: any) {
-    if (events.length > 0) {
-      return;
-    }
+//   async subscribeEvents({ dispatch }: any) {
+//     if (events.length > 0) {
+//       return;
+//     }
 
-    const api = await this.getApi();
+//     const api = await this.getApi();
 
-    events.push({
-      name: "accountChange",
-      callback: (addresses: any) => {
-        console.log(
-          "[events] accountChange of Lace wallet -> addresses",
-          addresses
-        );
-        const result = getAddressDetails(addresses[0]);
-        dispatch(
-          updateWalletRedux({
-            wallet: {
-              address: result.address.bech32,
-            },
-          })
-        );
-      },
-    });
-    events.forEach((event: any) => {
-      console.log('api.experimental: ', api.experimental)
-      api.experimental.on(event.name, event.callback);
-    });
+//     events.push({
+//       name: "accountChange",
+//       callback: (addresses: any) => {
+//         console.log(
+//           "[events] accountChange of Lace wallet -> addresses",
+//           addresses
+//         );
+//         const result = getAddressDetails(addresses[0]);
+//         dispatch(
+//           updateWalletRedux({
+//             wallet: {
+//               address: result.address.bech32,
+//             },
+//           })
+//         );
+//       },
+//     });
+//     events.forEach((event: any) => {
+//       console.log('api.experimental: ', api.experimental)
+//       api.experimental.on(event.name, event.callback);
+//     });
+//   }
+//   async unsubscribeEvents() {
+//     const api = await this.getApi();
+//     events.forEach((event: any) => {
+//       api.experimental.off(event.name, event.callback);
+//     });
+//     events = [];
+//   }
+// }
+
+async subscribeEvents({ dispatch }: any) {
+    // TODO: implement syncAccount method to get new accounts
+    return true;
   }
   async unsubscribeEvents() {
-    const api = await this.getApi();
-    events.forEach((event: any) => {
-      api.experimental.off(event.name, event.callback);
-    });
-    events = [];
+    return true;
   }
 }
 
