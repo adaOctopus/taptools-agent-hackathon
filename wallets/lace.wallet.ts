@@ -4,17 +4,17 @@ import { updateWalletRedux } from "../store/features/walletSlice";
 
 let events: any = [];
 
-class EternlWallet extends BaseWallet {
+class LaceWallet extends BaseWallet {
   constructor() {
     super({
-      provider: window?.cardano?.eternl,
-      name: "Eternl",
+      provider: window.cardano?.lace,
+      name: "Lace",
       extensionLink:
-        "https://chrome.google.com/webstore/detail/eternl/kmhcihpebfmpgmihbkipmjlmmioameka?hl=en",
+        "https://chromewebstore.google.com/detail/lace/gafhhkghbfjjkeiendhlofajokpaflmk?hl=en",
     });
   }
 
-async subscribeEvents({ dispatch }: any) {
+  async subscribeEvents({ dispatch }: any) {
     if (events.length > 0) {
       return;
     }
@@ -52,4 +52,4 @@ async subscribeEvents({ dispatch }: any) {
   }
 }
 
-export default EternlWallet;
+export default LaceWallet;

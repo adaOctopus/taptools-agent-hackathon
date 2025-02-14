@@ -15,11 +15,12 @@ import { get } from "http";
 import nami from "../../assets/nami.png"
 import yoroi from "../../assets/yoroi.png"
 import eternl from "../../assets/eternl.png"
+import lace from "../../assets/lacelogo.png"
 
 const walletIcons: any = {
-  nami: nami,
   yoroi: yoroi,
-  eternl: eternl
+  eternl: eternl,
+  lace: lace
 }
 
 
@@ -138,8 +139,12 @@ const WalletConnect = ({ style, className }: any) => {
             }}
             onCancel={handleSelectWalletModalClose}
           >
-            <h5 className="hero-magic"> Select a wallet 🚀</h5>
-            <Row gutter={[16, 16]}>
+            {/* <h5 className="hero-magic"> Select a wallet 🚀</h5> */}
+            <p className="font-medium"
+            style={{fontSize: "20px", color: "white", fontFamily: "Satoshi, sans-serif",}}>Select a wallet 🚀</p>
+            <div style={{marginTop: "20px"}}>
+              </div>
+              <Row gutter={[16, 16]}>
 
               {getWalletsMetadata().map((item) => (
 

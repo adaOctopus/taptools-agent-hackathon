@@ -9,7 +9,7 @@ import '@ant-design/v5-patch-for-react-19';
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
    <ReduxProvider>
-     <ThemeProvider defaultTheme="light" attribute="class">
+     <ThemeProvider defaultTheme="dark" attribute="class">
       <SidebarProvider>{children}</SidebarProvider>
     </ThemeProvider>
    </ReduxProvider>

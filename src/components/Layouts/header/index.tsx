@@ -10,7 +10,6 @@ import { Notification } from "./notification";
 import { Button } from "antd"
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
-import { WalletModal, ConnectWallet, useConnectWallet } from "@newm.io/cardano-dapp-wallet-connector";
 import dynamic from "next/dynamic";
 import WalletConnect  from "../../Wallet/WalletComponent";
 
@@ -34,7 +33,6 @@ import WalletConnect  from "../../Wallet/WalletComponent";
 
 export function Header() {
   const { toggleSidebar, isMobile } = useSidebarContext();
-  const { wallet } = useConnectWallet();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

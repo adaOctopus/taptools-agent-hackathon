@@ -1,17 +1,20 @@
 import nami from "./nami.wallet";
 import yoroi from "./yoroi.wallet";
 import eternl from "./eternl.wallet";
+import lace from "./lace.wallet";
 
 export const Wallets: any = {
-  nami,
+  
+  eternl,
+  lace,
   yoroi,
-  eternl
 };
 
 export const walletIcons: any = {
-  nami: "/public/assets/img/nami.png",
-  yoroi: "/public/assets/img/yoroi.png",
-  eternl: "/public/assets/img/eternl.png"
+  
+  eternl: "/public/assets/img/eternl.png",
+  lace: "/public/assets/img/laceloco.png",
+  yoroi: "/public/assets/img/yoroi.png"
 }
 
 export const getWalletsMetadata = () => {
@@ -20,7 +23,7 @@ export const getWalletsMetadata = () => {
     const walletIcon = walletIcons[key];
     const metadata = wallet.getMetadata();
     metadata["walletIcon"] = walletIcon;
-    console.log(metadata)
+    //console.log(metadata)
 
     return Object.assign({ id: key }, metadata);
   });
